@@ -8,7 +8,7 @@ import PayInput from '../InputComponents/PayInput/PayInput';
 import customValidator from "../../validators/validator";
 import Schems from "../../validators/validationSchems";
 
-import("react-credit-cards/es/styles-compiled.css");
+import "react-credit-cards/es/styles-compiled.css";
 
 
 let isPayForOrder;
@@ -33,7 +33,7 @@ const PayForm = (props) => {
                     number={number ? number : ''}
                     name={name ? name : ''}
                     expiry={expiry ? expiry : ''}
-                    cvc={cvc ? cvc : ''}
+                    cvc={cvc ? `${'*'.repeat(cvc.length)}` : ''}
                     focused={focusOnElement}
                 />
             </div>
@@ -119,7 +119,7 @@ const PayForm = (props) => {
                                 error: styles.error
                             }}
                             component={PayInput}
-                            type='text'
+                            type='password'
                             label='cvc'
                             changeFocus={changeFocusOnCard}
                         />

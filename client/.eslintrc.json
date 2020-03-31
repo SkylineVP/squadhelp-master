@@ -7,11 +7,11 @@
     }
   },
   "plugins": [
-    "jest"
   ],
   "extends": "airbnb",
   "parser": "babel-eslint",
   "rules": {
+    "no-unused-expressions": "off",
     "react/jsx-filename-extension": [
       1,
       {
