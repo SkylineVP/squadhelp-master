@@ -43,14 +43,6 @@ class RegistrationForm extends React.Component{
       <div className={ styles.signUpFormContainer }>
         { error && <Error data={ error.data } status={ error.status }
                           clearError={ authClearState }/> }
-        <div className={ styles.headerFormContainer }>
-          <h2>
-            CREATE AN ACCOUNT
-          </h2>
-          <h4>
-            We always keep your name and email address private.
-          </h4>
-        </div>
         <form onSubmit={ handleSubmit(this.formSubmit) }>
           <div className={ styles.row }>
             <Field
