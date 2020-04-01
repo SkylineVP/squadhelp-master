@@ -1,7 +1,7 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {authActionLogin, clearAuth} from "../../actions/actionCreator";
-import {Redirect} from 'react-router-dom';
+import {connect}                          from 'react-redux';
+import {createAuthLoginAction, clearAuth} from "../../actions/actionCreator";
+import PropTypes from 'prop-types';
 import styles from './LoginForm.module.sass';
 import {Field, reduxForm} from 'redux-form';
 import FormInput from '../FormInput/FormInput';
@@ -26,10 +26,10 @@ class LoginForm extends React.Component {
 
     const formInputClasses = {
       container: styles.inputContainer,
-      input: styles.input,
+      className: styles.input,
       warning: styles.fieldWarning,
-      notValid: styles.notValid,
-      valid: styles.valid,
+      invalidStyle: styles.notValid,
+      validStyle: styles.valid,
     };
 
     return (
@@ -40,14 +40,14 @@ class LoginForm extends React.Component {
         <form onSubmit={ handleSubmit(this.clicked) }>
           <Field
             name='email'
-            classes={ formInputClasses }
+            {...formInputClasses}
             component={ FormInput }
             type='text'
             label='Email Address'
           />
           <Field
             name='password'
-            classes={ formInputClasses }
+            {...formInputClasses}
             component={ FormInput }
             type='password'
             label='password'
@@ -57,7 +57,7 @@ class LoginForm extends React.Component {
             <span className={ styles.inscription }>{ isFetching
               ? 'Submitting...'
               : 'LOGIN' }</span>
-          </button>
+          </button >
         </form>
       </div>
     );
