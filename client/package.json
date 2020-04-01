@@ -63,6 +63,7 @@
     "@storybook/addons": "^5.0.5",
     "@storybook/react": "^5.3.17",
     "babel-loader": "^8.0.5",
+    "eslint-config-airbnb": "^18.1.0",
     "node-sass": "^4.13.1"
   }
 }

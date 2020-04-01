@@ -6,7 +6,7 @@
  transform: translateY(-50%);
 }
 .previous{
-
+left: -10px;
 }
 .next{
  left: calc(100% - 45px);

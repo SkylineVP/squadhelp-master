@@ -25,6 +25,7 @@ const SliderBar = props => {
                 return style.exampleCarousel;
             case carouselConstants.FEEDBACK_SLIDER:
                 return style.feedbackCarousel;
+            default : return carouselConstants.MAIN_SLIDER
         }
     };
 
