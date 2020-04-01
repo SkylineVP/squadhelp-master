@@ -9,7 +9,7 @@
     "build": "babel src -d dist"
   },
   "dependencies": {
-    "bcrypt": "^3.0.2",
+    "bcrypt": "^4.0.1",
     "body-parser": "^1.18.3",
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.4",
@@ -25,7 +25,7 @@
     "import": "^0.0.6",
     "jest": "^25.2.4",
     "js-file-download": "^0.4.5",
-    "jsonwebtoken": "^8.3.0",
+    "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^2.2.0",
     "less-middleware": "^3.1.0",
     "lodash": "^4.17.11",
@@ -37,11 +37,11 @@
     "node-uuid": "^1.4.8",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "pg": "^7.4.3",
+    "pg": "^7.18.2",
     "pg-hstore": "^2.3.2",
     "regenerator-runtime": "^0.13.2",
-    "sequelize": "^4.43.0",
-    "socket.io": "^2.2.0",
+    "sequelize": "^4.44.4",
+    "socket.io": "^2.3.0",
     "uuid": "^3.3.2",
     "yup": "^0.26.6"
   },
