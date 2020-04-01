@@ -7,22 +7,11 @@ import { connect }                  from 'react-redux';
 import { clearErrorSignUpAndLogin } from '../../actions/actionCreator';
 import CONSTANTS                    from '../../constants';
 import articles                     from './articles.json';
+import Article                      from "../../components/Article";
 
 
 const RegistrationPage = ( props ) => {
 	props.clearError();
-
-	const articlesElement = articles.map(article => (
-			<>
-				<div className={styles.headerArticle}>{article.header}
-				</div>
-				<div className={styles.article}>
-					{article.article}
-				</div>
-			</>
-		)
-	);
-
 	return (
 		<div className={styles.signUpPage}>
 			<div className={styles.signUpContainer}>
@@ -33,7 +22,7 @@ const RegistrationPage = ( props ) => {
 							  style={{textDecoration: 'none'}}><span>Login</span></Link>
 					</div>
 				</div>
-				<div className={ styles.headerFormContainer }>
+				<div className={styles.headerFormContainer}>
 					<h2>
 						CREATE AN ACCOUNT
 					</h2>
@@ -46,7 +35,13 @@ const RegistrationPage = ( props ) => {
 			<div className={styles.footer}>
 				<div className={styles.articlesMainContainer}>
 					<div className={styles.ColumnContainer}>
-						{articlesElement}
+						{
+							articles.map(article => <Article header={article.header}
+															 articleBody={article.body}
+															 articleStyle={styles.article}
+															 headerStyles={styles.headerArticle}/>
+							)
+						}
 						<div className={styles.article}>
 							Check out our <span className={styles.orangeSpan}>FAQs</span> or
 							send us a <span
