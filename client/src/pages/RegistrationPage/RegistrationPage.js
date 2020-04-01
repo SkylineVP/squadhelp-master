@@ -21,7 +21,7 @@ const RegistrationPage = (props) => {
                   style={ {textDecoration: 'none'} }><span>Login</span></Link>
           </div>
         </div>
-        <RegistrationForm  />
+        <RegistrationForm />
       </div>
       <div className={ styles.footer }>
         <div className={ styles.articlesMainContainer }>
