@@ -2,7 +2,6 @@ import React from 'react';
 import Error from '../Error/Error';
 import { connect } from 'react-redux';
 import { authActionRegister, clearAuth } from '../../actions/actionCreator';
-import { Redirect } from 'react-router-dom';
 import styles from './RegistrationForm.module.sass';
 import { Field, reduxForm } from 'redux-form';
 import FormInput from '../FormInput/FormInput';
@@ -16,10 +15,10 @@ import Schems from '../../validators/validationSchems';
 class RegistrationForm extends React.Component{
 
   componentWillUnmount () {
-    this.props.authClear();
+    this.props.authClearState();
   }
 
-  clicked = (values) => {
+  formSubmit = ( values) => {
     this.props.register({
       firstName: values.firstName,
       lastName: values.lastName,
@@ -31,7 +30,7 @@ class RegistrationForm extends React.Component{
   };
 
   render () {
-    const {handleSubmit, submitting, auth, authClear} = this.props;
+    const {handleSubmit, submitting, auth, authClearState} = this.props;
     const {error} = auth;
     const formInputClasses = {
       container: styles.inputContainer,
@@ -43,7 +42,7 @@ class RegistrationForm extends React.Component{
     return (
       <div className={ styles.signUpFormContainer }>
         { error && <Error data={ error.data } status={ error.status }
-                          clearError={ authClear }/> }
+                          clearError={ authClearState }/> }
         <div className={ styles.headerFormContainer }>
           <h2>
             CREATE AN ACCOUNT
@@ -52,7 +51,7 @@ class RegistrationForm extends React.Component{
             We always keep your name and email address private.
           </h4>
         </div>
-        <form onSubmit={ handleSubmit(this.clicked) }>
+        <form onSubmit={ handleSubmit(this.formSubmit) }>
           <div className={ styles.row }>
             <Field
               name='firstName'
@@ -146,7 +145,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => (
   {
     register: (data) => dispatch(authActionRegister(data)),
-    authClear: () => dispatch(clearAuth()),
+    authClearState: () => dispatch(clearAuth()),
   }
 );
 
