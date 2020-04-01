@@ -48,7 +48,8 @@ class LoginForm extends React.Component {
                             container: styles.inputContainer,
                             input: styles.input,
                             warning: styles.fieldWarning,
-                            notValid: styles.notValid
+                            notValid: styles.notValid,
+                            valid:styles.valid
                         }}
                         component={FormInput}
                         type='password'
