@@ -8,7 +8,7 @@ import PayInput from '../InputComponents/PayInput/PayInput';
 import customValidator from '../../validators/validator';
 import Schems from '../../validators/validationSchems';
 
-import("react-credit-cards/es/styles-compiled.css");
+import"react-credit-cards/es/styles-compiled.css";
 
 
 let isPayForOrder;
