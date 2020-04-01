@@ -16,7 +16,7 @@ class LoginForm extends React.Component {
         this.props.authClear();
     }
 
-    clicked = (values) => {
+    formSubmit = ( values) => {
         this.props.loginRequest(values);
     };
 
@@ -36,8 +36,7 @@ class LoginForm extends React.Component {
       <div className={ styles.loginForm }>
         { error && <Error data={ error.data } status={ error.status }
                           clearError={ authClear }/> }
-        <h2>LOGIN TO YOUR ACCOUNT</h2>
-        <form onSubmit={ handleSubmit(this.clicked) }>
+        <form onSubmit={ handleSubmit(this.formSubmit) }>
           <Field
             name='email'
             {...formInputClasses}
@@ -71,7 +70,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => (
     {
-        loginRequest: (data) => dispatch(authActionLogin(data)),
+        loginRequest: (data) => dispatch(createAuthLoginAction(data)),
         authClear: () => dispatch(clearAuth())
     }
 );

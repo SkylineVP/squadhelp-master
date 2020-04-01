@@ -1,7 +1,7 @@
 import ACTION from './actionTypes';
 
 
-export const authActionLogin = (data) => {
+export const createAuthLoginAction = ( data) => {
     return {
         type: ACTION.AUTH_ACTION_LOGIN,
         data: data
