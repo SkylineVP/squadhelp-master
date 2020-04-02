@@ -42,6 +42,9 @@ const RegistrationPage = ( props ) => {
 															 headerStyles={styles.headerArticle}/>
 							)
 						}
+						<div className={styles.headerArticle}>
+							I have other questions! How can I get in touch with Squadhelp?
+						</div>
 						<div className={styles.article}>
 							Check out our <span className={styles.orangeSpan}>FAQs</span> or
 							send us a <span
