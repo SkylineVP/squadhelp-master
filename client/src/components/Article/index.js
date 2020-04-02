@@ -5,13 +5,13 @@ import styles    from "../../pages/RegistrationPage/RegistrationPage.module.sass
 const Article = props => {
 	const {header,headerStyles,articleBody,articleStyle}=props;
 	return (
-		<>
+		<article>
 			<div className={headerStyles}>{header}
 			</div>
 			<div className={articleStyle}>
 				{articleBody}
 			</div>
-		</>
+		</article>
 	);
 };
 
