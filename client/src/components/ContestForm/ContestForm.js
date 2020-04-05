@@ -6,8 +6,8 @@ import { withRouter } from 'react-router-dom';
 import styles from './ContestForm.module.sass';
 import Spinner from '../Spinner/Spinner';
 import { Field, reduxForm } from 'redux-form';
-import FormInput from '../FormInput/FormInput';
-import SelectInput from '../SelectInput/SelectInput';
+import FormField            from '../FormField/FormField';
+import SelectInput          from '../SelectInput/SelectInput';
 import customValidator from '../../validators/validator';
 import Schems from '../../validators/validationSchems';
 import FieldFileInput from '../InputComponents/FieldFileInput/FieldFileInput';
@@ -84,7 +84,7 @@ class ContestForm extends React.Component{
                 className={ styles.inputHeader }>What name of your venture?</span>
               <Field
                 name='nameVenture'
-                component={ FormInput }
+                component={ FormField }
                 type='text'
                 label='name of venture'
                 classes={ {
@@ -116,7 +116,7 @@ class ContestForm extends React.Component{
                 className={ styles.inputHeader }>What name of your venture?</span>
               <Field
                 name='nameVenture'
-                component={ FormInput }
+                component={ FormField }
                 type='text'
                 label='name of venture'
                 classes={ {
@@ -161,7 +161,7 @@ class ContestForm extends React.Component{
                       className={ styles.inputHeader }>Title of contest</span>
                     <Field
                       name='title'
-                      component={ FormInput }
+                      component={ FormField }
                       type='text'
                       label='Title'
                       classes={ {

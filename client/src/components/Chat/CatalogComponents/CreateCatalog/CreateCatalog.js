@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Field, reduxForm} from 'redux-form';
-import FormInput from '../../../FormInput/FormInput';
-import styles from './CreateCatalog.module.sass';
+import FormField          from '../../../FormField/FormField';
+import styles             from './CreateCatalog.module.sass';
 import {createCatalog} from '../../../../actions/actionCreator';
 
 const validate = (values) => {
@@ -25,7 +25,7 @@ const CreateCatalog = (props) => {
         <form onSubmit={handleSubmit(click)} className={styles.form}>
             <Field
                 name='catalogName'
-                component={FormInput}
+                component={FormField}
                 type='text'
                 label='name of catalog'
                 classes={{

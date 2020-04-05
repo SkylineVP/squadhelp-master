@@ -4,7 +4,7 @@ import {sendMessageAction} from '../../../../actions/actionCreator';
 import {Field, reduxForm} from 'redux-form';
 import styles from './ChatInput.module.sass';
 import CONSTANTS from '../../../../constants';
-import FormInput from "../../../FormInput/FormInput";
+import FormField from "../../../FormField/FormField";
 
 
 const validate = (values) => {
@@ -34,7 +34,7 @@ const ChatInput = (props) => {
             <form onSubmit={handleSubmit(clickButton)} className={styles.form}>
                 <Field
                     name='message'
-                    component={FormInput}
+                    component={FormField}
                     type='text'
                     label='message'
                     classes={{

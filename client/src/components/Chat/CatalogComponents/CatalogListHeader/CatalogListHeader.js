@@ -2,8 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {changeShowModeCatalog, changeRenameCatalogMode, changeCatalogName} from "../../../../actions/actionCreator";
 import {Field, reduxForm} from 'redux-form';
-import styles from './CatalogHeader.module.sass';
-import FormInput from '../../../FormInput/FormInput';
+import styles    from './CatalogHeader.module.sass';
+import FormField from '../../../FormField/FormField';
 
 
 const validate = (values) => {
@@ -38,7 +38,7 @@ const CatalogListHeader = (props) => {
                             warning: styles.fieldWarning,
                             notValid: styles.notValid
                         }}
-                        component={FormInput}
+                        component={FormField}
                         type='text'
                         label='Catalog Name'
                     />

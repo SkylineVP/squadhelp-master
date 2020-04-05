@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { authActionRegister, clearAuth } from '../../actions/actionCreator';
 import styles from './RegistrationForm.module.sass';
 import { Field, reduxForm } from 'redux-form';
-import FormInput from '../FormInput/FormInput';
-import RoleInput from '../RoleInput/RoleInput';
+import FormField            from '../FormField/FormField';
+import RoleInput            from '../RoleInput/RoleInput';
 import AgreeTermOfServiceInput
   from '../AgreeTermOfServiceInput/AgreeTermOfServiceInput';
 import CONSTANTS from '../../constants';
@@ -48,14 +48,14 @@ class RegistrationForm extends React.Component{
             <Field
               name='firstName'
               {...formInputClasses }
-              component={ FormInput }
+              component={ FormField }
               type='text'
               label='First name'
             />
             <Field
               name='lastName'
               {...formInputClasses }
-              component={ FormInput }
+              component={ FormField }
               type='text'
               label='Last name'
             />
@@ -64,14 +64,14 @@ class RegistrationForm extends React.Component{
             <Field
               name='displayName'
               {...formInputClasses }
-              component={ FormInput }
+              component={ FormField }
               type='text'
               label='Display Name'
             />
             <Field
               name='email'
               {...formInputClasses }
-              component={ FormInput }
+              component={ FormField }
               type='text'
               label='Email Address'
             />
@@ -80,14 +80,14 @@ class RegistrationForm extends React.Component{
             <Field
               name='password'
               {...formInputClasses }
-              component={ FormInput }
+              component={ FormField }
               type='password'
               label='Password'
             />
             <Field
               name='confirmPassword'
               {...formInputClasses }
-              component={ FormInput }
+              component={ FormField }
               type='password'
               label='Password confirmation'
             />

@@ -5,8 +5,8 @@ import {setOffer, clearAddOfferError} from '../../actions/actionCreator';
 import {withRouter} from 'react-router-dom';
 import styles from './OfferForm.module.sass';
 import {reduxForm, Field} from 'redux-form';
-import ImageUpload from '../InputComponents/ImageUpload/ImageUpload';
-import FormInput from '../FormInput/FormInput';
+import ImageUpload     from '../InputComponents/ImageUpload/ImageUpload';
+import FormField       from '../FormField/FormField';
 import customValidator from "../../validators/validator";
 import Schems from "../../validators/validationSchems";
 import Error from '../../components/Error/Error';
@@ -38,7 +38,7 @@ const OfferForm = (props) => {
                         warning: styles.fieldWarning,
                         notValid: styles.notValid
                     }}
-                    component={FormInput}
+                    component={FormField}
                     type='text'
                     label='your suggestion'
                 />

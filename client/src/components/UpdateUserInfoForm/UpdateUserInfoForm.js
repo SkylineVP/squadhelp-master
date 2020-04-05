@@ -3,8 +3,8 @@ import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import {clearUserError} from '../../actions/actionCreator';
 import styles from './UpdateUserInfoForm.module.sass';
-import ImageUpload from '../InputComponents/ImageUpload/ImageUpload';
-import FormInput from '../FormInput/FormInput';
+import ImageUpload     from '../InputComponents/ImageUpload/ImageUpload';
+import FormField       from '../FormField/FormField';
 import customValidator from '../../validators/validator';
 import Schems from '../../validators/validationSchems';
 import Error from '../../components/Error/Error';
@@ -19,7 +19,7 @@ const UpdateUserInfoForm = (props) => {
                 <span className={styles.label}>First Name</span>
                 <Field
                     name='firstName'
-                    component={FormInput}
+                    component={FormField}
                     type='text'
                     label='First Name'
                     classes={{
@@ -34,7 +34,7 @@ const UpdateUserInfoForm = (props) => {
                 <span className={styles.label}>Last Name</span>
                 <Field
                     name='lastName'
-                    component={FormInput}
+                    component={FormField}
                     type='text'
                     label='LastName'
                     classes={{
@@ -49,7 +49,7 @@ const UpdateUserInfoForm = (props) => {
                 <span className={styles.label}>Display Name</span>
                 <Field
                     name='displayName'
-                    component={FormInput}
+                    component={FormField}
                     type='text'
                     label='Display Name'
                     classes={{
