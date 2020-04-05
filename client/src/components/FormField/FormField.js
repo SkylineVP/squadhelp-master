@@ -7,7 +7,7 @@ import FormsInput   from "../InputComponents/FormsInput";
 
 const FormField = ( props) => {
 
-  const { meta: {touched, error,visited},warningStyle,validStyle,invalidStyle,containerStyle,className,...rest} = props;
+  const {label,type, className,input, meta: {touched, error,visited},warningStyle,validStyle,invalidStyle,containerStyle} = props;
 
   const inputClassName = classNames(className, {
     [invalidStyle]: touched && error,
@@ -16,8 +16,9 @@ const FormField = ( props) => {
 
   return (
     <InputWrapper className={ containerStyle }>
-      <FormsInput{...rest} className={inputClassName}/>
-      <ErrorMessage touched={touched} error={error}  className={warningStyle} />
+      <FormsInput {...input} placeholder={ label } type={ type }
+                  className={ inputClassName }/>
+      <ErrorMessage error={error} touched={touched}  className={warningStyle} />
     </InputWrapper>
   );
 };
