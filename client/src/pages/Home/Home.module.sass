@@ -405,9 +405,60 @@
       color: inherit
       text-decoration: none
 
-
   &:hover
     color: white
     background-color: #28D2D1
 
+.gradientContainer
+  display: flex
+  background-image: linear-gradient(30deg,rgba(25,160,255,.85) 0%,rgba(45,21,130,.9) 100%)
+  padding: 24px
+  box-sizing: border-box
+  color: white
+  font-family: 'Poppins', sans-serif
+  font-size: 16px
+  font-weight: 500
+  justify-content: space-between
+  align-items: center
+  max-width: 90%
 
+  .row
+    display: flex
+    flex-wrap: wrap
+    margin-right: -15px
+    margin-left: -15px
+
+  @media screen and (min-width: 1200px)
+      width: 1140px
+
+  @media screen and (max-width: 575px)
+    flex-direction: column
+    .text
+     margin-bottom: 10px
+    .whiteButton
+      margin-left: 0
+      align-self: flex-start
+
+.whiteButton
+  padding: .75rem 1rem
+  background-color: white
+  cursor: pointer
+  transition: all 0.2s ease-in-out
+  margin-left: 80px
+  box-sizing: border-box
+  border: 1px solid transparent
+  a
+   text-decoration: none
+   color: #1e2022
+   font-weight: 400
+   i
+     margin-right: 0.25rem
+  &:hover
+    box-shadow: 0 4px 11px rgba(255,255,255,.35)
+    transform: translateY(-3px)
+  @media screen and (max-width: 480px)
+   width: 100%
+   text-align: center
+   margin-left: 0
+  @media screen and (max-width: 980px)
+    margin-left: 40px
