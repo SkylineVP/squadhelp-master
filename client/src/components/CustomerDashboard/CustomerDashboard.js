@@ -1,12 +1,14 @@
-import React from 'react';
-import {connect} from 'react-redux';
+import React                                                            from 'react';
+import {connect}                                                        from 'react-redux';
 import {getContestsForCustomer, clearContestList, setNewCustomerFilter} from '../../actions/actionCreator';
-import CONSTANTS from '../../constants';
-import ContestsContainer from '../../components/ContestsContainer/ContestsContainer';
-import ContestBox from "../ContestBox/ContestBox";
-import styles from './CustomerDashboard.module.sass';
-import classNames from 'classnames';
-import TryAgain from '../../components/TryAgain/TryAgain';
+import CONSTANTS                                                        from '../../constants';
+import ContestsContainer                                                from '../../components/ContestsContainer/ContestsContainer';
+import ContestBox                                                       from "../ContestBox/ContestBox";
+import styles                                                           from './CustomerDashboard.module.sass';
+import classNames                                                       from 'classnames';
+import TryAgain                                                         from '../../components/TryAgain/TryAgain';
+import { Link }                                                         from "react-router-dom";
+import LinkButton                                                       from "../LinkButton";
 
 
 class CustomerDashboard extends React.Component {
@@ -85,6 +87,10 @@ class CustomerDashboard extends React.Component {
                              [styles.filter]: CONSTANTS.CONTEST_STATUS_PENDING !== customerFilter
                          })}>Inactive contests
                     </div>
+                    <LinkButton link={'/transactions'}>
+                         Your Transaction
+                    </LinkButton>
+
                 </div>
                 <div className={styles.contestsContainer}>
                     {
@@ -98,7 +104,9 @@ class CustomerDashboard extends React.Component {
                             </ContestsContainer>
                     }
                 </div>
+                <Link to='/transactions'/>
             </div>
+
 
         );
     }
