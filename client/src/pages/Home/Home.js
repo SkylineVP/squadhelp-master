@@ -174,6 +174,7 @@ const Home = ( props ) => {
                         <span className={styles.text}>
                                  Ready to get started? Launch a contest and start receiving submissions instantly.
                         </span>
+
 						<span className={styles.whiteButton}>
                                 <Link to="/startContest">
                                     <i className="far fa-lightbulb"/>
