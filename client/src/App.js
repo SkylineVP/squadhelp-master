@@ -17,8 +17,8 @@ import {ToastContainer}         from 'react-toastify';
 import ContestCreationPage      from './pages/ContestCreation/ContestCreationPage';
 import CONSTANTS                from './constants';
 import browserHistory           from './browserHistory';
-import ChatContainer            from './components/Chat/ChatComponents/ChatContainer/ChatContainer';
-import TransactionPage          from "./pages/Transactions/TransactionPage";
+import ChatContainer    from './components/Chat/ChatComponents/ChatContainer/ChatContainer';
+import TransactionsPage from "./pages/Transactions/TransactionsPage";
 
 
 
@@ -61,7 +61,7 @@ class App extends Component {
                     <Route exact path='/dashboard' component={PrivateHoc(Dashboard)}/>
                     <Route exact path='/contest/:id' component={PrivateHoc(ContestPage)}/>
                     <Route exact path='/account' component={PrivateHoc(UserProfile)}/>
-                    <Route exact path='/transactions' component={PrivateHoc(TransactionPage)}/>
+                    <Route exact path='/transactions' component={PrivateHoc(TransactionsPage)}/>
                     <Route component={NotFound}/>
                 </Switch>
                 <ChatContainer/>
