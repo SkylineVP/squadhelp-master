@@ -170,18 +170,21 @@ const Home = ( props ) => {
 							<img src={`${CONSTANTS.STATIC_IMAGES_PATH}gif/3-compressed.gif`} alt="compressed"/>
 						</div>
 					</div>
-					<div className={styles.gradientContainer}>
+					<div className={styles.wrapper}>
+						<div className={styles.gradientContainer}>
                         <span className={styles.text}>
                                  Ready to get started? Launch a contest and start receiving submissions instantly.
                         </span>
 
-						<span className={styles.whiteButton}>
+							<span className={styles.whiteButton}>
                                 <Link to="/startContest">
                                     <i className="far fa-lightbulb"/>
                                     Start A Contest
                                 </Link>
                             </span>
+						</div>
 					</div>
+
 					<div className={styles.headerBar}>
 						<h3>Names For Sale</h3>
 						<p className={styles.blueUnderline}>Not interested in launching a contest?
