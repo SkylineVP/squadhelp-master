@@ -7,11 +7,11 @@ const initialState = {
     contests: [],
     customerFilter: CONSTANTS.CONTEST_STATUS_ACTIVE,
     creatorFilter: {
-        typeIndex: 1,
         contestId: '',
         industry: '',
         awardSort: 'asc',
-        ownEntries: false
+        ownEntries: false,
+        type:''
     },
     haveMore: true
 };

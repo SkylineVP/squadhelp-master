@@ -2,19 +2,20 @@ const bd = require('../models');
 const CONSTANTS = require('../constants');
 
 module.exports.createWhereForAllContests = (
-  typeIndex, contestId, industry, awardSort) => {
+  type, contestId, industry, awardSort) => {
   let object = {
     where: {},
     order: [],
   };
-  if (typeIndex) {
-    Object.assign(object.where, { contestType: getPredicateTypes(typeIndex) });
+  console.log(industry);
+  if (type) {
+    Object.assign(object.where, { contestType: {[ bd.Sequelize.Op.or ]:type.split(',')}});
   }
   if (contestId) {
     Object.assign(object.where, { id: contestId });
   }
   if (industry) {
-    Object.assign(object.where, { industry: industry });
+    Object.assign(object.where, { industry: {[ bd.Sequelize.Op.or ]:industry.split(',')} });
   }
   if (awardSort) {
     object.order.push(['prize', awardSort]);
@@ -28,6 +29,7 @@ module.exports.createWhereForAllContests = (
     },
   });
   object.order.push(['id', 'desc']);
+  console.log(object);
   return object;
 };
 

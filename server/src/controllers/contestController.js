@@ -243,7 +243,7 @@ module.exports.getCustomersContests = (req, res, next) => {
 };
 
 module.exports.getContests = (req, res, next) => {
-  const predicates = UtilFunctions.createWhereForAllContests(req.body.typeIndex,
+  const predicates = UtilFunctions.createWhereForAllContests(req.body.type,
     req.body.contestId, req.body.industry, req.body.awardSort);
   db.Contests.findAll({
     where: predicates.where,
@@ -269,6 +269,7 @@ module.exports.getContests = (req, res, next) => {
       res.send({ contests, haveMore });
     })
     .catch(err => {
+      console.log(err);
       next(new ServerError());
     })
 };
