@@ -1,38 +1,38 @@
 import React                from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import {  withRouter } from 'react-router-dom';
 import { connect }          from 'react-redux';
 import {
 	getContestsForCreative,
 	clearContestList,
 	setNewCreatorFilter,
 	getDataForContest
-}                           from '../../actions/actionCreator';
-import ContestsContainer    from '../../components/ContestsContainer/ContestsContainer';
-import ContestBox           from "../ContestBox/ContestBox";
-import styles               from './CreatorDashboard.module.sass';
-import queryString          from 'query-string';
-import classNames           from 'classnames';
-import isEqual              from 'lodash/isEqual';
-import TryAgain             from '../../components/TryAgain/TryAgain';
-import LinkButton           from "../LinkButton";
-import _                    from 'lodash'
-import { valueMock }        from "redux-form/lib/util/eventMocks";
+}                        from '../../actions/actionCreator';
+import ContestsContainer from '../../components/ContestsContainer/ContestsContainer';
+import ContestBox        from "../ContestBox/ContestBox";
+import styles            from './CreatorDashboard.module.sass';
+import queryString       from 'query-string';
+import classNames        from 'classnames';
+import isEqual           from 'lodash/isEqual';
+import TryAgain          from '../../components/TryAgain/TryAgain';
+import LinkButton        from "../LinkButton";
+import _                 from 'lodash'
+import FilterMultiSelect from "../FilterMultiSelect/FilterMultiSelect";
+import SelectedFilters   from "../SelectedFilters/SelectedFilters";
+
+
 
 
 const types = ['name', 'tagline', 'logo'];
 
 
 class CreatorDashboard extends React.Component {
-
 	onSelectHandler = ( type, target, isBadge ) => {
-
 		const {creatorFilter} = this.props;
 		const prevFilter = _.clone(creatorFilter);
 		const filter = prevFilter[type].split(',');
 		_.remove(filter, function ( n ) {
 			return n === ''
 		});
-        debugger;
 		if (!isBadge) {
 			if (!filter.includes(target.target.value)) {
 				filter.push(target.target.value);
@@ -55,44 +55,6 @@ class CreatorDashboard extends React.Component {
 			value: filter.join(',')
 		})
 	};
-
-	renderFilters = ( typeFilter ) => {
-		const {creatorFilter} = this.props;
-		return creatorFilter[typeFilter] && creatorFilter[typeFilter].split(',').map(value => {
-			return (
-				<div key={value} className={styles.filter}>
-					{typeFilter}:{value}
-					<i className="fas fa-times" data-value={value}
-					   onClick={( target ) => this.onSelectHandler(typeFilter, target,true)
-					   }/>
-				</div>
-			)
-		})
-	};
-
-	renderSelectType = ( type ) => {
-		const array = [];
-		switch (type) {
-			case 'type': {
-				types.forEach(( el, i ) => array.push(<option key={i} value={el}>{el}</option>));
-				break;
-			}
-			case 'industry': {
-				const {industry} = this.props.dataForContest.data;
-				industry.forEach(( industry, i ) => array.push(<option key={i + 1}
-																	   value={industry}>{industry}</option>));
-				break;
-			}
-		}
-		const {creatorFilter} = this.props;
-		return (
-			<select multiple  onClick={( target ) => this.onSelectHandler(type, target,false)}
-					className={styles.multiinput}>
-				{array}
-			</select>
-		);
-	};
-
 	componentWillReceiveProps( nextProps, nextContext ) {
 		if (nextProps.location.search !== this.props.location.search) {
 			this.parseUrlForParams(nextProps.location.search);
@@ -115,6 +77,7 @@ class CreatorDashboard extends React.Component {
 	};
 
 	changePredicate = ( {name, value} ) => {
+
 		const {creatorFilter} = this.props;
 		this.props.newFilter({[name]: value});
 		this.parseParamsToUrl({...creatorFilter, [name]: value});
@@ -141,8 +104,8 @@ class CreatorDashboard extends React.Component {
 			awardSort: obj.awardSort || 'asc',
 			ownEntries: typeof obj.ownEntries === "undefined" ? false : obj.ownEntries
 		};
-		if (!isEqual(filter, this.props.creatorFilter)) {
 
+		if (!isEqual(filter, this.props.creatorFilter)) {
 			this.props.newFilter(filter);
 			this.props.clearContestsList();
 			this.getContests(filter);
@@ -207,7 +170,9 @@ class CreatorDashboard extends React.Component {
 						</div>
 						<div className={styles.inputContainer}>
 							<span>By contest type</span>
-							{this.renderSelectType('type')}
+							<FilterMultiSelect className={styles.multiinput}
+											   onClickHandler={this.onSelectHandler}
+											   options={{type:'type',dataTypes:types}}/>
 						</div>
 						<div className={styles.inputContainer}>
 							<span>By contest ID</span>
@@ -219,7 +184,9 @@ class CreatorDashboard extends React.Component {
 						</div>
 						{!isFetching && <div className={styles.inputContainer}>
 							<span>By industry</span>
-							{this.renderSelectType('industry')}
+							<FilterMultiSelect className={styles.multiinput}
+											   onClickHandler={this.onSelectHandler}
+											   options={{type:'industry',dataTypes:this.props.dataForContest.data.industry}}/>
 						</div>}
 						<div className={styles.inputContainer}>
 							<span>By amount award</span>
@@ -238,8 +205,10 @@ class CreatorDashboard extends React.Component {
 				</div>
 				<div>
 					<div className={styles.filters}>
-						{this.renderFilters('type')}
-						{this.renderFilters('industry')}
+						<SelectedFilters onClickHandler={this.onSelectHandler}
+										 type='type'/>
+						<SelectedFilters onClickHandler={this.onSelectHandler}
+										 type='industry'/>
 					</div>
 
 					{
