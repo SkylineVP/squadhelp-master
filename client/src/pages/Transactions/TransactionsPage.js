@@ -1,27 +1,9 @@
-import React, { Component } from 'react';
-import PropTypes            from 'prop-types';
+import React from 'react';
+
 import Header from "../../components/Header/Header";
 import styles from './TransactionsPage.module.scss'
 
-class TransactionsPage extends Component {
-	constructor( props ) {
-		super(props);
-
-	}
-
-
-
-	componentDidMount() {
-
-	}
-
-
-
-	componentWillUnmount() {
-
-	}
-
-	render() {
+function TransactionsPage () {
 		return (
 			<>
 				<Header/>
@@ -51,9 +33,7 @@ class TransactionsPage extends Component {
 
 			</>
 		);
-	}
 }
 
-TransactionsPage.propTypes = {};
 
 export default TransactionsPage;

@@ -5,6 +5,7 @@ import * as restController from '../api/rest/restController';
 
 
 export function* activeContestsSaga(action){
+
     yield put({type: ACTION.GET_CONTESTS_ACTION_REQUEST});
     try{
         const {data}=yield  restController.getActiveContests(action.data);

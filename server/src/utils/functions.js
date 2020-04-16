@@ -7,7 +7,7 @@ module.exports.createWhereForAllContests = (
     where: {},
     order: [],
   };
-  console.log(industry);
+
   if (type) {
     Object.assign(object.where, { contestType: {[ bd.Sequelize.Op.or ]:type.split(',')}});
   }
@@ -29,7 +29,7 @@ module.exports.createWhereForAllContests = (
     },
   });
   object.order.push(['id', 'desc']);
-  console.log(object);
+
   return object;
 };
 
