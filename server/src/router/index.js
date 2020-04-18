@@ -177,5 +177,6 @@ router.post(
   checkToken.checkToken,
   chatController.getCatalogs,
 );
+router.get('/offersImages',contestController.getImages);
 
 module.exports = router;

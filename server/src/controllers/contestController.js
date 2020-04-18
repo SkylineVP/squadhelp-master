@@ -273,3 +273,34 @@ module.exports.getContests = (req, res, next) => {
       next(new ServerError());
     })
 };
+
+module.exports.getImages = async ( req, res, next ) => {
+  let filterDate;
+  if (req.body.date){
+     filterDate=new Date(req.body.date);
+  }
+  else {
+     filterDate=new Date('01-01-1971');
+    console.log(filterDate.getTime().toString());
+  }
+
+  if (filterDate.getFullYear()<2000){
+    filterDate='0'+filterDate.getTime().toString();
+  }
+  const images = await db.Offers.findAll({
+        where: {
+          fileName: {
+            [db.Sequelize.Op.ne]: null,
+            [db.Sequelize.Op.gt]: filterDate
+          },
+
+        },
+    attributes:{
+      exclude:['id','userId','contestId','text','originalFileName','status']
+    }
+      }
+  );
+  if (images){
+   res.send(images);
+  }
+};
