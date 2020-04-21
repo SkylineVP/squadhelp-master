@@ -7,6 +7,8 @@ const checkToken = require('../middlewares/checkToken');
 const validators = require('../middlewares/validators');
 const chatController = require('../controllers/chatController');
 const upload = require('../utils/fileUpload');
+const getFilterDate = require("../middlewares/getBodyDate");
+const {getHistoryTotal,getAllHistory} = require("../controllers/transactionHistoryController");
 const router = express.Router();
 
 router.post(
@@ -177,6 +179,19 @@ router.post(
   checkToken.checkToken,
   chatController.getCatalogs,
 );
-router.get('/offersImages',contestController.getImages);
+router.get(
+	'/offersImages',
+	getFilterDate,
+	contestController.getImages);
+router.get(
+	'/transactionHistory',
+	checkToken.checkToken,
+	getAllHistory
+	);
+router.get(
+	'/totalTransaction',
+	checkToken.checkToken,
+	getHistoryTotal
+);
 
 module.exports = router;
