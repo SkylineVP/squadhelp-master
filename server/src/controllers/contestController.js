@@ -275,32 +275,25 @@ module.exports.getContests = (req, res, next) => {
 };
 
 module.exports.getImages = async ( req, res, next ) => {
-  let filterDate;
-  if (req.body.date){
-     filterDate=new Date(req.body.date);
-  }
-  else {
-     filterDate=new Date('01-01-1971');
-    console.log(filterDate.getTime().toString());
-  }
-
-  if (filterDate.getFullYear()<2000){
-    filterDate='0'+filterDate.getTime().toString();
-  }
+try {
   const images = await db.Offers.findAll({
         where: {
           fileName: {
             [db.Sequelize.Op.ne]: null,
-            [db.Sequelize.Op.gt]: filterDate
+            [db.Sequelize.Op.gt]: req.filterDate
           },
 
         },
-    attributes:{
-      exclude:['id','userId','contestId','text','originalFileName','status']
-    }
+        attributes:{
+          exclude:['id','userId','contestId','text','originalFileName','status']
+        }
       }
   );
-  if (images){
-   res.send(images);
-  }
+
+  return res.send(images);
+}catch (e) {
+  next(new ServerError())
+}
+
+
 };
