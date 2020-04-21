@@ -1,39 +1,36 @@
-import React from 'react';
+import React, { useEffect }                                                     from 'react';
+import {connect}                                                                from "react-redux";
+import Header                                                                   from "../../components/Header/Header";
+import styles                                                                   from './TransactionsPage.module.scss'
+import { createLoadTotalTransactionAction, createLoadTransactionHistoryAction } from "../../actions/actionCreator";
+import TransactionsTable
+																				from "../../components/TransactrionsTable/TransactionsTable";
 
-import Header from "../../components/Header/Header";
-import styles from './TransactionsPage.module.scss'
 
-function TransactionsPage () {
+
+function TransactionsPage (props) {
+	useEffect(()=>{
+		props.getTotal();
+		props.getTransactions();
+	},[]);
 		return (
 			<>
 				<Header/>
 				<div className={styles.container}>
 					<h2>Your Transactions</h2>
-					<div className={styles.tableWrapper}>
-						<table className={styles.table}>
-							<thead>
-								<th>Id</th>
-								<th>Sum</th>
-							</thead>
-							<tbody>
-								<tr>
-									<td>1</td>
-									<td>+350</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>-350</td>
-								</tr>
-							</tbody>
-						</table>
-
-					</div>
-
+				<TransactionsTable  transactions={props.transactions} total={props.total}/>
 				</div>
 
 			</>
 		);
 }
-
-
-export default TransactionsPage;
+const mapStateToProps = ( state ) => {
+	return{ ...state.transactionHistory}
+};
+const mapDispatchToProps = ( dispatch ) => {
+	return{
+		getTotal:()=>dispatch(createLoadTotalTransactionAction()),
+		getTransactions:()=>dispatch(createLoadTransactionHistoryAction()),
+	}
+};
+export default connect(mapStateToProps,mapDispatchToProps,)(TransactionsPage);
