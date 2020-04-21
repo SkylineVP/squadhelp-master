@@ -436,3 +436,36 @@ export const changeModalShow=(data)=>{
         data: data
     }
 };
+export const createLoadTransactionHistoryAction=()=>{
+    return {
+        type:ACTION.GET_TRANSACTION_HISTORY_REQUEST
+    }
+};
+export const getTransactionHistorySuccess=(data)=>{
+    return {
+        type:ACTION.GET_TRANSACTION_HISTORY_SUCCESS,
+        transactions:data
+
+    }
+};export const getTransactionHistoryErorr=(error)=>{
+    return {
+        type:ACTION.GET_TRANSACTION_HISTORY_ERROR,
+        error:error
+    }
+};
+export const createLoadTotalTransactionAction=()=>{
+    return {
+        type:ACTION.GET_TOTAL_TRANSACTION_REQUEST
+    }
+};
+export const getTotalTransactionSucces=(data)=>{
+    return {
+        type:ACTION.GET_TOTAL_TRANSACTION_SUCCESS,
+        total:data
+    }
+};export const getTotalTransactionError=(error)=>{
+    return {
+        type:ACTION.GET_TOTAL_TRANSACTION_ERROR,
+        error:error
+    }
+};

@@ -43,7 +43,8 @@ export const getContestById = (data) => {
         }
     });
 };
-
+export const getTransactionHistory=()=>http.get('transactionHistory');
+export const getTotalTransaction=()=>http.get('totalTransaction');
 
 
 
