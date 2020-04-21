@@ -17,29 +17,22 @@ next(new ServerError())
 };
 module.exports.getHistoryTotal=async (req,res,next)=>{
 	try {
-		const consumption=await db.TransactionHistory.findAll(
+		const total=await db.TransactionHistory.findAll(
 			{
 				where:{
 					userId:req.tokenData.userId,
-					typeOperation:'CONSUMPTION'
 				},
-				group : ['TransactionHistory.userId'],
+				group : ['TransactionHistory.typeOperation'],
 				attributes:[
-					[db.Sequelize.fn('sum', db.Sequelize.col('sum')), 'CONSUMPTION']
+					'typeOperation',
+					[db.Sequelize.fn('sum', db.Sequelize.col('sum')), 'total'],
 				]
 			});
-		const income=await db.TransactionHistory.findAll(
-			{
-				where:{
-					userId:req.tokenData.userId,
-					typeOperation:'INCOME'
-				},
-				group : ['TransactionHistory.userId'],
-				attributes:[
-					[db.Sequelize.fn('sum', db.Sequelize.col('sum')), 'INCOME']
-				]
-			});
-		return res.send({...income[0].get(),...consumption[0].get()})
+		let result={};
+		total.forEach(value => {
+			result[value.get("typeOperation")]=value.get('total')
+		});
+		return res.send(result);
 	}catch (e) {
 		console.error(e);
 		next(new ServerError())
