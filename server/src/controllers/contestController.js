@@ -177,7 +177,7 @@ const resolveOffer = async (
   }, {
     contestId: contestId,
   }, transaction);
-  transaction.commit();
+
   const arrayRoomsId = [];
   updatedOffers.forEach(offer => {
     if (offer.status === CONSTANTS.OFFER_STATUS_REJECTED && creatorId !==
@@ -208,6 +208,11 @@ module.exports.setOfferStatus = async (req, res, next) => {
       const winningOffer = await resolveOffer(req.body.contestId,
         req.body.creatorId, req.body.orderId, req.body.offerId,
         req.body.priority, transaction);
+     await db.TransactionHistory.create(
+          {typeOperation:'CONSUMPTION',sum:req.body.prize,userId:req.tokenData.userId,createdAt: new Date()},{transaction});
+     await db.TransactionHistory.create(
+          {typeOperation:'INCOME',sum:req.body.prize,userId:req.body.creatorId,createdAt: new Date()},{transaction});
+      transaction.commit();
       res.send(winningOffer);
     } catch (err) {
       transaction.rollback();
