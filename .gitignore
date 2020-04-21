@@ -9,3 +9,5 @@
 .server/public/images
 **server/public/*
 *server/public/*
+/client/package-lock.json
+/server/sequelize-meta.json
