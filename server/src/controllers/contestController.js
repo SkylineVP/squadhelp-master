@@ -5,7 +5,6 @@ const contestQueries = require( './queries/contestQueries' );
 const userQueries = require( './queries/userQueries' );
 const controller = require( '../socketInit' );
 const UtilFunctions = require( '../utils/functions' );
-const NotFound = require( '../errors/UserNotFoundError' );
 const CONSTANTS = require( '../constants' );
 const transactionController = require( '../controllers/transactionHistoryController' );
 
@@ -225,12 +224,12 @@ module.exports.setOfferStatus = async ( req, res, next ) => {
 											 userId: req.body.creatorId,
 											 createdAt: new Date()
 										 }, {transaction} )] ).then( value => {
-																									transaction.commit();
-																									res.send( value[0] )
-										 										} ).catch( err => {
-										 															transaction.rollback();
-										 															next( err );
-																						} );
+																						transaction.commit();
+																						res.send( value[0] )
+																					} ).catch( err => {
+																						transaction.rollback();
+																						next( err );
+																					} );
 	}
 };
 
