@@ -7,21 +7,22 @@ import {
 }                                                     from "../actions/actionCreator";
 import { put }                                        from "@redux-saga/core/effects";
 
-export function* getTransactionsSaga(data) {
+export function* getTransactionsSaga() {
 	try {
-		const {data}= yield getTransactionHistory();
-		yield put(getTransactionHistorySuccess(data))
-	}catch (e) {
-		yield put(getTransactionHistoryErorr(e))
+		const {data} = yield getTransactionHistory();
+		yield put( getTransactionHistorySuccess( data ) )
+	} catch (e) {
+		yield put( getTransactionHistoryErorr( e ) )
 	}
 
 }
-export function* getTotalTransactionsSaga(data) {
+
+export function* getTotalTransactionsSaga() {
 	try {
-		const {data}= yield getTotalTransaction();
-		yield put(getTotalTransactionSucces(data))
-	}catch (e) {
-		yield put(getTotalTransactionError(e))
+		const {data} = yield getTotalTransaction();
+		yield put( getTotalTransactionSucces( data ) )
+	} catch (e) {
+		yield put( getTotalTransactionError( e ) )
 	}
 
 }
